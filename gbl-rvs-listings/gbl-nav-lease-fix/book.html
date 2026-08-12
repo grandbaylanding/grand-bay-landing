@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Stay | Grand Bay Landing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .form-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: var(--charcoal);
+      font-size: 0.95rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(125, 155, 118, 0.3);
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: var(--cream);
+      transition: var(--transition);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(125, 155, 118, 0.15);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+    .rules-summary {
+      background: var(--sand-light);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+    .rules-summary ul {
+      margin: 0.75rem 0 0 1.1rem;
+      list-style: disc;
+      color: var(--text-muted);
+    }
+    .rules-summary li {
+      margin-bottom: 0.35rem;
+    }
+    .agree-box {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+    .agree-box input {
+      margin-top: 0.25rem;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+    .note {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><div class="logo-mark">GB</div>Grand Bay Landing</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="sites.html">Sites & Rates</a>
+        <a href="amenities.html">Amenities</a>
+        <a href="rvs.html">Lease-to-Own</a>
+        <a href="book.html" class="active">Book</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <a href="https://tenants.propertymanagercloud.com/home/login?ReturnUrl=%2f" class="btn btn-primary" target="_blank" rel="noopener">Pay Rent</a>
+      </div>
+      <button class="menu-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h1>Request a Stay</h1>
+        <p>Check the calendar for busy dates, then send a request. We’ll confirm availability by email and send payment instructions if the dates are open. This is a request — not an instant booking.</p>
+      </div>
+
+      <div class="calendar-wrap" style="max-width:900px;margin:0 auto 2rem;background:#fff;border-radius:16px;padding:1rem;box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+        <h2 style="font-size:1.15rem;margin:0 0 0.75rem;text-align:center;">Short-Term Availability</h2>
+        <p style="text-align:center;color:var(--text-muted);font-size:0.92rem;margin:0 0 1rem;">Busy dates are blocked below. If your dates look open, submit a request and we’ll confirm.</p>
+        <div style="overflow:auto;-webkit-overflow-scrolling:touch;">
+          <iframe src="https://calendar.google.com/calendar/embed?src=c_06d75ab07a75242da12ebfbc3df880751e3aca9501e75c2309893764db3ca737%40group.calendar.google.com&ctz=America%2FChicago" style="border:0;min-width:280px;" width="100%" height="500" frameborder="0" scrolling="no" title="Short-term site availability"></iframe>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div id="form-success" style="display:none; text-align:center; padding:2rem 1rem;">
+          <h3 style="color:var(--sage-dark); margin-bottom:0.75rem;">Thank you!</h3>
+          <p style="color:var(--text-muted); margin-bottom:0.75rem;">Your booking request has been received. We will contact you soon to confirm availability and next steps.</p>
+          <p style="color:var(--text-muted); margin-bottom:1.5rem; font-size:0.95rem;">If you do not receive a confirmation email within a few minutes, please check your spam or junk folder.</p>
+          <button type="button" class="btn btn-primary" onclick="document.getElementById('form-success').style.display='none'; document.getElementById('booking-form').style.display='block';">Submit another request</button>
+        </div>
+        <form id="booking-form" action="/book.html" name="booking" netlify method="POST">
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="arrival">Arrival Date</label>
+              <input type="date" id="arrival" name="arrival" required>
+            </div>
+            <div class="form-group">
+              <label for="departure">Departure Date</label>
+              <input type="date" id="departure" name="departure" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="stay-type">Type of Stay</label>
+            <select id="stay-type" name="stay-type" required>
+              <option value="">Select one...</option>
+              <option value="nightly">Nightly</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly / Long-term</option>
+              <option value="lease-to-own">Lease-to-Own Camper</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="rv-type">What are you bringing?</label>
+            <select id="rv-type" name="rv-type" required>
+              <option value="">Select one...</option>
+              <option value="own-rv">My own RV / Camper</option>
+              <option value="lease-to-own">Interested in Lease-to-Own</option>
+              <option value="unsure">Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" required placeholder="Your full name">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" required placeholder="(251) 000-0000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Anything we should know? (optional)</label>
+            <textarea id="message" name="message" rows="3" placeholder="RV length, number of people, questions, etc."></textarea>
+          </div>
+
+          <!-- Rules Summary -->
+          <div class="rules-summary">
+            <strong style="color:var(--charcoal);">Key Park Rules (Summary)</strong>
+            <ul>
+              <li>Lot must be kept clean and mowed/trimmed by the tenant</li>
+              <li>Maximum 2 vehicles and 2 pets (under 30 lbs, approved breeds only)</li>
+              <li>Quiet enjoyment — no loud noise or disturbances</li>
+              <li>No trampolines, fireworks, or unapproved structures</li>
+              <li>Children under 18 must be supervised; not out unsupervised after 10 pm</li>
+              <li>Speed must be safe and prudent; no off-road vehicles in the park</li>
+              <li>All park rules are part of the lease — violations can result in termination</li>
+            </ul>
+            <p style="margin-top:0.9rem; margin-bottom:0;">
+              <a href="rules.html" style="color:var(--sage-dark); font-weight:500; text-decoration:underline;">View Complete Park Rules & Lot Lease Terms →</a>
+            </p>
+          </div>
+
+          <div class="agree-box">
+            <input type="checkbox" id="agree" name="agree" required>
+            <label for="agree">I have read and agree to the Park Rules and Lot Lease Agreement. I understand that submitting this form is a request only and does not guarantee a site.</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Submit Booking Request</button>
+
+          <p class="note">
+            After we review your request, we will contact you to confirm availability, discuss next steps, and provide payment instructions. A signed Lot Lease Agreement will be required before move-in.
+          </p>
+        </form>
+      </div>
+
+      <p style="text-align:center; margin-top:2rem; color:var(--text-muted); font-size:0.95rem;">
+        12165 Highway 188, Grand Bay, Alabama 36541
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border:none; padding-top:0;">
+        <span>© 2026 Grand Bay Landing</span>
+        <a href="index.html" style="color:#a0aaa5;">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    const bookingForm = document.getElementById('booking-form');
+    if (bookingForm) {
+      bookingForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const data = new FormData(form);
+        try {
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            form.reset();
+            form.style.display = 'none';
+            document.getElementById('form-success').style.display = 'block';
+          } else {
+            alert('Something went wrong. Please try again or email us directly.');
+          }
+        } catch (err) {
+          alert('Something went wrong. Please try again or email us directly.');
+        }
+      });
+    }
+  </script>
+
+  <script>
+    document.getElementById('email')?.addEventListener('input', function() {
+      document.getElementById('replyto').value = this.value;
+    });
+  </script>
+</body>
+</html>
