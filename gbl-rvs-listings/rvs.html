@@ -202,6 +202,7 @@
                 <p>${rv.description || ''}</p>
                 ${rv.features ? `<div class="rv-features">${rv.features}</div>` : ''}
                 <a href="${detailUrl}" class="btn btn-primary">View details &amp; photos</a>
+                <a href="apply.html?unit=${encodeURIComponent(rv.title || '')}" class="btn btn-secondary" style="margin-left:0.5rem;">Apply</a>
               </div>
             </article>
           `;

@@ -112,7 +112,8 @@
               <p style="font-size:0.95rem;color:var(--text-muted);margin:1rem 0 1.25rem;">
                 Questions about this camper or ready to apply? Send us a message and we’ll follow up.
               </p>
-              <a href="${rv.inquire_link || 'contact.html'}" class="btn btn-primary btn-lg">Inquire about this camper</a>
+              <a href="apply.html?unit=${encodeURIComponent(rv.title || '')}" class="btn btn-primary btn-lg">Apply for this camper</a>
+              <p style="margin-top:0.75rem;font-size:0.9rem;"><a href="${rv.inquire_link || 'contact.html'}">Or send a quick question</a></p>
             </div>
           </div>
         `;

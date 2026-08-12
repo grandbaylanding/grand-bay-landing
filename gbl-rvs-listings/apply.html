@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply | Grand Bay Landing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .form-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .form-group { margin-bottom: 1.15rem; }
+    .form-group label {
+      display: block; font-weight: 500; margin-bottom: 0.35rem;
+      color: var(--charcoal); font-size: 0.95rem;
+    }
+    .form-group .hint { font-size: 0.85rem; color: var(--text-muted); font-weight: 400; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.7rem 1rem;
+      border: 1px solid rgba(125, 155, 118, 0.3);
+      border-radius: 10px; font-size: 1rem; font-family: inherit;
+      background: var(--cream);
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(125, 155, 118, 0.15);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    .check-group { display: flex; flex-direction: column; gap: 0.5rem; margin: 0.5rem 0 1rem; }
+    .check-group label { display: flex; gap: 0.6rem; align-items: flex-start; font-weight: 400; cursor: pointer; }
+    .check-group input { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; }
+    .section-label {
+      font-size: 1.05rem; font-weight: 600; color: var(--sage-dark);
+      margin: 1.5rem 0 0.75rem; padding-bottom: 0.35rem;
+      border-bottom: 1px solid rgba(125,155,118,0.25);
+    }
+    .note { font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><div class="logo-mark">GB</div>Grand Bay Landing</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="sites.html">Sites & Rates</a>
+        <a href="amenities.html">Amenities</a>
+        <a href="rvs.html">Lease-to-Own</a>
+        <a href="book.html">Book</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-cta">
+        <a href="https://tenants.propertymanagercloud.com/home/login?ReturnUrl=%2f" class="btn btn-primary" target="_blank" rel="noopener">Pay Rent</a>
+      </div>
+      <button class="menu-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h1>Rental Application</h1>
+        <p>Apply for a lease-to-own camper or an extended-stay lot. We’ll review your application and follow up by email.</p>
+      </div>
+
+      <div class="form-card">
+        <div id="form-success" style="display:none; text-align:center; padding:2rem 1rem;">
+          <h3 style="color:var(--sage-dark); margin-bottom:0.75rem;">Application received</h3>
+          <p style="color:var(--text-muted); margin-bottom:0.75rem;">Thank you. We’ll review your information and contact you soon. If you don’t see a confirmation email, check your spam folder.</p>
+          <a href="rvs.html" class="btn btn-primary">Back to Lease-to-Own</a>
+        </div>
+
+        <form id="apply-form" name="application" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/apply.html">
+          <input type="hidden" name="form-name" value="application">
+          <input type="hidden" name="_subject" value="New Rental Application - Grand Bay Landing">
+          <p style="display:none;"><label>Don’t fill: <input name="bot-field"></label></p>
+
+          <div class="section-label">Type of stay</div>
+          <div class="check-group">
+            <label><input type="radio" name="stay_type" value="Lease-to-own camper (park-owned)" required> Lease-to-own camper (park-owned unit)</label>
+            <label><input type="radio" name="stay_type" value="Bring my own RV — lot rent only"> Bring my own RV — lot rent only (extended stay)</label>
+          </div>
+          <div class="form-group">
+            <label for="interested_in">Camper or site of interest <span class="hint">(optional)</span></label>
+            <input type="text" id="interested_in" name="interested_in" placeholder="e.g. 2006 Keystone Everest">
+          </div>
+
+          <div class="section-label">Applicant</div>
+          <div class="form-group">
+            <label for="full_name">Full legal name</label>
+            <input type="text" id="full_name" name="full_name" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dob">Date of birth</label>
+              <input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="license">Driver’s license #</label>
+              <input type="text" id="license" name="license">
+            </div>
+            <div class="form-group">
+              <label for="license_state">State</label>
+              <input type="text" id="license_state" name="license_state" maxlength="2">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ssn_last4">SSN (last 4 only)</label>
+            <input type="text" id="ssn_last4" name="ssn_last4" maxlength="4" pattern="[0-9]*" inputmode="numeric">
+          </div>
+
+          <div class="section-label">Co-applicant <span class="hint" style="font-weight:400;">(optional)</span></div>
+          <div class="form-group">
+            <label for="co_name">Full legal name</label>
+            <input type="text" id="co_name" name="co_name">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="co_phone">Phone</label>
+              <input type="tel" id="co_phone" name="co_phone">
+            </div>
+            <div class="form-group">
+              <label for="co_email">Email</label>
+              <input type="email" id="co_email" name="co_email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="other_occupants">Other occupants (name, age, relationship)</label>
+            <textarea id="other_occupants" name="other_occupants" rows="2"></textarea>
+          </div>
+
+          <div class="section-label">Current address</div>
+          <div class="form-group">
+            <label for="address">Street address</label>
+            <input type="text" id="address" name="address" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+              <label for="state_zip">State / Zip</label>
+              <input type="text" id="state_zip" name="state_zip" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="time_at_address">How long at this address?</label>
+              <input type="text" id="time_at_address" name="time_at_address">
+            </div>
+            <div class="form-group">
+              <label for="landlord_phone">Landlord / park phone</label>
+              <input type="tel" id="landlord_phone" name="landlord_phone">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reason_leaving">Reason for leaving</label>
+            <input type="text" id="reason_leaving" name="reason_leaving">
+          </div>
+
+          <div class="section-label">Employment &amp; income</div>
+          <div class="form-group">
+            <label for="employer">Employer</label>
+            <input type="text" id="employer" name="employer">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="position">Position</label>
+              <input type="text" id="position" name="position">
+            </div>
+            <div class="form-group">
+              <label for="income">Gross monthly income ($)</label>
+              <input type="text" id="income" name="income">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="other_income">Other income (source &amp; amount)</label>
+            <input type="text" id="other_income" name="other_income">
+          </div>
+
+          <div class="section-label">RV information</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="rv_make">Make / model</label>
+              <input type="text" id="rv_make" name="rv_make">
+            </div>
+            <div class="form-group">
+              <label for="rv_year">Year / length</label>
+              <input type="text" id="rv_year" name="rv_year" placeholder="e.g. 2006 / 30 ft">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pets">Pets (type, breed, weight, how many) — or “None”</label>
+            <input type="text" id="pets" name="pets">
+          </div>
+
+          <div class="section-label">Emergency contact</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="emergency_name">Name</label>
+              <input type="text" id="emergency_name" name="emergency_name">
+            </div>
+            <div class="form-group">
+              <label for="emergency_phone">Phone</label>
+              <input type="tel" id="emergency_phone" name="emergency_phone">
+            </div>
+          </div>
+
+          <div class="section-label">Authorization</div>
+          <div class="check-group">
+            <label>
+              <input type="checkbox" name="auth_verify" value="Yes" required>
+              I authorize Grand Bay Landing / Madison’s Investments LLC to verify this information, including employers, landlords, references, and background/credit checks.
+            </label>
+            <label>
+              <input type="checkbox" name="auth_rules" value="Yes" required>
+              I understand park rules apply and that first month, last month, and a deposit may be required at move-in.
+            </label>
+            <label>
+              <input type="checkbox" name="auth_truth" value="Yes" required>
+              I certify the information provided is true and complete.
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="signature">Type your full legal name as signature</label>
+            <input type="text" id="signature" name="signature" required>
+          </div>
+          <div class="form-group">
+            <label for="notes">Anything else we should know? <span class="hint">(optional)</span></label>
+            <textarea id="notes" name="notes" rows="3"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Submit application</button>
+          <p class="note">After you submit, we’ll email you about next steps. Check spam if you don’t see a reply within a couple of days.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById('apply-form');
+      const success = document.getElementById('form-success');
+      if (!form) return;
+      // Prefill interested_in from query string
+      const params = new URLSearchParams(window.location.search);
+      const unit = params.get('unit');
+      if (unit && form.interested_in) form.interested_in.value = unit;
+
+      form.addEventListener('submit', function () {
+        setTimeout(function () {
+          form.style.display = 'none';
+          success.style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 400);
+      });
+    })();
+  </script>
+</body>
+</html>
