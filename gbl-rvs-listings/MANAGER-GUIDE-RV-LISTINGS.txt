@@ -1,0 +1,53 @@
+GRAND BAY LANDING – How to update Lease-to-Own RV listings
+============================================================
+
+The public page is:  /rvs.html   (Lease-to-Own in the menu)
+
+Listings are stored in this file:
+  data/rvs.json
+
+--------------------------------------------------
+TO ADD A NEW RV
+--------------------------------------------------
+1. Open data/rvs.json in any text editor (TextEdit, Notepad, VS Code, etc.)
+2. Copy an existing block between { and },
+3. Paste it and change the fields:
+
+{
+  "id": "rv-002",
+  "title": "2019 Forest River",
+  "status": "available",
+  "monthly": "$650/mo",
+  "description": "Nice 1-bedroom camper. Stays in the park.",
+  "beds": "1",
+  "features": "Lease-to-own · Full hookups · Quiet area",
+  "image": "",
+  "inquire_link": "contact.html"
+}
+
+4. Save the file
+5. Upload the whole site folder to Netlify again (or just replace data/rvs.json if you use a method that allows single-file updates)
+
+status options: available | pending | sold | hidden
+(hidden = won’t show on the website)
+
+--------------------------------------------------
+TO REMOVE OR HIDE A LISTING
+--------------------------------------------------
+- Change "status" to "hidden"  OR
+- Delete that whole { ... } block from the file
+  (keep commas correct between items)
+
+--------------------------------------------------
+PHOTOS (later)
+--------------------------------------------------
+Put photos in an images/ folder and set:
+  "image": "images/my-camper.jpg"
+
+--------------------------------------------------
+FUTURE: Full admin panel (no file editing)
+--------------------------------------------------
+Netlify CMS / Decap can give a login page at /admin so a manager
+never touches code. That requires connecting the site to GitHub
+instead of drag-and-drop uploads. Ask for help setting that up
+when you’re ready.

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lease-to-Own RVs | Grand Bay Landing</title>
+  <meta name="description" content="Browse lease-to-own campers available at Grand Bay Landing in Grand Bay, Alabama.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .rvs-hero {
+      background: linear-gradient(160deg, var(--cream) 0%, var(--sand-light) 100%);
+      padding: 3.25rem 0 2.5rem;
+      text-align: center;
+    }
+    .rvs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.75rem;
+      margin-top: 0.5rem;
+    }
+    .rv-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(125,155,118,0.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .rv-card-image {
+      height: 200px;
+      background: linear-gradient(145deg, #c5d4c0, #a8bda3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .rv-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .rv-card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .rv-card-body h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.2rem;
+    }
+    .rv-status {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(125,155,118,0.15);
+      color: var(--sage-dark);
+      margin-bottom: 0.75rem;
+    }
+    .rv-status.sold, .rv-status.pending {
+      background: rgba(0,0,0,0.06);
+      color: var(--text-muted);
+    }
+    .rv-price {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--sage-dark);
+      margin-bottom: 0.75rem;
+    }
+    .rv-card-body p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+    .rv-features {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">GB</div>
+        Grand Bay Landing
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="sites.html">Sites & Rates</a>
+        <a href="amenities.html">Amenities</a>
+        <a href="rvs.html" class="active">Lease-to-Own</a>
+        <a href="book.html">Book</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-cta">
+        <a href="https://tenants.propertymanagercloud.com/home/login?ReturnUrl=%2f" class="btn btn-primary" target="_blank" rel="noopener">Pay Rent</a>
+      </div>
+      <button class="menu-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <section class="rvs-hero">
+    <div class="container">
+      <h1>Lease-to-Own Campers</h1>
+      <p style="max-width:520px; margin:0.75rem auto 0; color:var(--text-muted);">
+        Settle in with a camper that stays on site. Browse what’s available and reach out to learn more.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:2rem;">
+    <div class="container">
+      <div id="rvs-list" class="rvs-grid">
+        <div class="empty-state">Loading listings…</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo" style="margin-bottom:1rem;">
+            <div class="logo-mark">GB</div>
+            Grand Bay Landing
+          </div>
+          <p style="color:var(--text-muted); font-size:0.95rem;">
+            12165 Highway 188<br>Grand Bay, Alabama 36541
+          </p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:0.75rem;">Quick Links</h4>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="sites.html">Sites & Rates</a></li>
+            <li><a href="rvs.html">Lease-to-Own</a></li>
+            <li><a href="book.html">Book</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="https://tenants.propertymanagercloud.com/home/login?ReturnUrl=%2f" target="_blank" rel="noopener">Pay Online</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom:0.75rem;">Contact</h4>
+          <p style="color:var(--text-muted); font-size:0.95rem;">
+            info@grandbaylanding.com<br>
+            stay@grandbaylanding.com
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Grand Bay Landing</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    async function loadRVs() {
+      const container = document.getElementById('rvs-list');
+      try {
+        const res = await fetch('data/rvs.json?t=' + Date.now());
+        const rvs = await res.json();
+        const available = rvs.filter(r => r.status !== 'hidden');
+        if (!available.length) {
+          container.innerHTML = '<div class="empty-state"><p>No campers listed right now. Check back soon or <a href="contact.html">contact us</a>.</p></div>';
+          return;
+        }
+        container.innerHTML = available.map(rv => {
+          const img = rv.image
+            ? `<img src="${rv.image}" alt="${rv.title}">`
+            : 'Photo Coming Soon';
+          const statusClass = (rv.status || 'available').toLowerCase();
+          const statusLabel = statusClass === 'available' ? 'Available' : (rv.status || 'Available');
+          return `
+            <article class="rv-card">
+              <div class="rv-card-image">${img}</div>
+              <div class="rv-card-body">
+                <span class="rv-status ${statusClass}">${statusLabel}</span>
+                <h3>${rv.title || 'Lease-to-Own Camper'}</h3>
+                <div class="rv-price">${rv.monthly || 'Contact for pricing'}</div>
+                <p>${rv.description || ''}</p>
+                ${rv.features ? `<div class="rv-features">${rv.features}</div>` : ''}
+                <a href="${rv.inquire_link || 'contact.html'}" class="btn btn-primary">Inquire</a>
+              </div>
+            </article>
+          `;
+        }).join('');
+      } catch (e) {
+        container.innerHTML = '<div class="empty-state"><p>Unable to load listings. Please <a href="contact.html">contact us</a>.</p></div>';
+      }
+    }
+    loadRVs();
+  </script>
+</body>
+</html>

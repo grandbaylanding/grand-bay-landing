@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pay Online | Grand Bay Landing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .pay-hero {
+      background: linear-gradient(160deg, var(--cream) 0%, var(--sand-light) 100%);
+      padding: 3.5rem 0 2.5rem;
+      text-align: center;
+    }
+    .pay-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .pay-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 2.25rem;
+      text-align: center;
+      border: 1px solid rgba(125,155,118,0.15);
+    }
+    .pay-card h3 {
+      margin-bottom: 0.6rem;
+    }
+    .pay-card p {
+      margin-bottom: 1.5rem;
+      font-size: 1.02rem;
+    }
+    .pay-note {
+      max-width: 640px;
+      margin: 2.5rem auto 0;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      background: var(--sand-light);
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius);
+    }
+    @media (max-width: 700px) {
+      .pay-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">GB</div>
+        Grand Bay Landing
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="sites.html">Sites & Rates</a>
+        <a href="amenities.html">Amenities</a>
+        <a href="rvs.html">Lease-to-Own</a>
+        <a href="book.html">Book</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <a href="https://tenants.propertymanagercloud.com/home/login?ReturnUrl=%2f" class="btn btn-primary" target="_blank" rel="noopener">Pay Rent</a>
+      </div>
+      <button class="menu-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <section class="pay-hero">
+    <div class="container">
+      <h1>Pay Online</h1>
+      <p style="max-width:480px; margin:0.75rem auto 0; color:var(--text-muted);">
+        Secure and simple payments for monthly tenants and guest stays.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:2rem;">
+    <div class="container">
+      <div class="pay-grid">
+        <!-- Monthly Rent -->
+        <div class="pay-card">
+          <div style="font-size:2.2rem; margin-bottom:0.75rem;">🏠</div>
+          <h3>Monthly Rent</h3>
+          <p>For current long-term and monthly tenants. Pay your rent securely online.</p>
+          <a href="https://tenants.propertymanagercloud.com/home/login?ReturnUrl=%2f" class="btn btn-primary btn-lg" style="width:100%;" target="_blank" rel="noopener">Pay Monthly Rent</a>
+          <p style="font-size:0.85rem; margin-top:1rem; color:var(--text-muted);">
+            Log in to the tenant portal to pay rent and view your balance.
+          </p>
+        </div>
+
+        <!-- Guest / Deposit -->
+        <div class="pay-card">
+          <div style="font-size:2.2rem; margin-bottom:0.75rem;">🚐</div>
+          <h3>Guest Payment</h3>
+          <p>Pay a deposit or balance for a short-term camper rental stay.</p>
+          <a href="#" class="btn btn-primary btn-lg" style="width:100%;">Make a Payment</a>
+          <p style="font-size:0.85rem; margin-top:1rem; color:var(--text-muted);">
+            Stripe payment link will go here
+          </p>
+        </div>
+      </div>
+
+      <div class="pay-note">
+        <strong>How it works:</strong> Once we set up Stripe, these buttons will take you to a secure payment page. 
+        You’ll be able to pay by card or digital wallet. No account required for guests. 
+        Monthly tenants can use the same simple process every month.
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border:none; padding-top:0;">
+        <span>© 2026 Grand Bay Landing · 12165 Highway 188, Grand Bay, AL 36541</span>
+        <a href="index.html" style="color:#a0aaa5;">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

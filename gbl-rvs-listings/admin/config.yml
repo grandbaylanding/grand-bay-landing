@@ -1,0 +1,24 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: false
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: rvs
+    label: Lease-to-Own RVs
+    label_singular: RV Listing
+    folder: content/rvs
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", default: "Lease-to-Own Camper" }
+      - { label: "Status", name: "status", widget: "select", options: ["available", "pending", "sold", "hidden"], default: "available" }
+      - { label: "Monthly Payment / Price", name: "monthly", widget: "string", default: "Contact for pricing" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Features (short line)", name: "features", widget: "string", required: false }
+      - { label: "Photo", name: "image", widget: "image", required: false }
+      - { label: "Inquire Link", name: "inquire_link", widget: "string", default: "contact.html", required: false }
