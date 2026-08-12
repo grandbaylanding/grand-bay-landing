@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camper Details | Grand Bay Landing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .detail-hero { padding: 2rem 0 1rem; }
+    .detail-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; align-items: start; }
+    @media (max-width: 800px) { .detail-layout { grid-template-columns: 1fr; } }
+    .gallery-main {
+      background: #c5d4c0; border-radius: 16px; overflow: hidden;
+      aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
+    }
+    .gallery-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-thumbs {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+      gap: 0.5rem; margin-top: 0.75rem;
+    }
+    .gallery-thumbs button {
+      border: 2px solid transparent; border-radius: 8px; padding: 0; overflow: hidden;
+      cursor: pointer; background: none; aspect-ratio: 1;
+    }
+    .gallery-thumbs button.active { border-color: var(--sage); }
+    .gallery-thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .detail-panel {
+      background: #fff; border-radius: 16px; padding: 1.75rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid rgba(125,155,118,0.15);
+    }
+    .detail-panel h1 { font-size: 1.5rem; margin: 0 0 0.5rem; }
+    .detail-price { font-size: 1.2rem; font-weight: 600; color: var(--sage-dark); margin-bottom: 1rem; }
+    .detail-status {
+      display: inline-block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.04em; padding: 0.25rem 0.6rem; border-radius: 999px;
+      background: rgba(125,155,118,0.15); color: var(--sage-dark); margin-bottom: 0.75rem;
+    }
+    .detail-features { font-size: 0.95rem; color: var(--text-muted); margin: 1rem 0; }
+    .back-link { display: inline-block; margin-bottom: 1rem; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><div class="logo-mark">GB</div>Grand Bay Landing</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="sites.html">Sites & Rates</a>
+        <a href="amenities.html">Amenities</a>
+        <a href="rvs.html" class="active">Lease-to-Own</a>
+        <a href="book.html">Book</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-cta">
+        <a href="https://tenants.propertymanagercloud.com/home/login?ReturnUrl=%2f" class="btn btn-primary" target="_blank" rel="noopener">Pay Rent</a>
+      </div>
+      <button class="menu-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <section class="section detail-hero">
+    <div class="container" id="detail-root">
+      <p style="color:var(--text-muted);">Loading…</p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    function qs(name) {
+      return new URLSearchParams(window.location.search).get(name);
+    }
+
+    async function loadDetail() {
+      const root = document.getElementById('detail-root');
+      const id = qs('id');
+      try {
+        const res = await fetch('data/rvs.json?t=' + Date.now());
+        const list = await res.json();
+        const rv = list.find(x => x.id === id) || list[0];
+        if (!rv) {
+          root.innerHTML = '<p>Listing not found. <a href="rvs.html">Back to Lease-to-Own</a></p>';
+          return;
+        }
+        document.title = (rv.title || 'Camper') + ' | Grand Bay Landing';
+        const photos = (rv.images && rv.images.length) ? rv.images : (rv.image ? [rv.image] : []);
+        const mainSrc = photos[0] || '';
+        const thumbs = photos.map((src, i) =>
+          `<button type="button" class="${i === 0 ? 'active' : ''}" data-src="${src}">
+            <img src="${src}" alt="">
+          </button>`
+        ).join('');
+
+        root.innerHTML = `
+          <a class="back-link" href="rvs.html">← Back to Lease-to-Own</a>
+          <div class="detail-layout">
+            <div>
+              <div class="gallery-main" id="main-photo">
+                ${mainSrc ? `<img src="${mainSrc}" alt="${rv.title || ''}">` : '<span style="color:#fff;">Photo coming soon</span>'}
+              </div>
+              ${photos.length > 1 ? `<div class="gallery-thumbs" id="thumbs">${thumbs}</div>` : ''}
+            </div>
+            <div class="detail-panel">
+              <span class="detail-status">${(rv.status || 'available')}</span>
+              <h1>${rv.title || 'Lease-to-Own Camper'}</h1>
+              <div class="detail-price">${rv.monthly || 'Contact for pricing'}</div>
+              <p>${rv.details || rv.description || ''}</p>
+              ${rv.features ? `<div class="detail-features">${rv.features}</div>` : ''}
+              <p style="font-size:0.95rem;color:var(--text-muted);margin:1rem 0 1.25rem;">
+                Questions about this camper or ready to apply? Send us a message and we’ll follow up.
+              </p>
+              <a href="${rv.inquire_link || 'contact.html'}" class="btn btn-primary btn-lg">Inquire about this camper</a>
+            </div>
+          </div>
+        `;
+
+        const main = document.getElementById('main-photo');
+        document.querySelectorAll('#thumbs button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('#thumbs button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            main.innerHTML = `<img src="${btn.dataset.src}" alt="">`;
+          });
+        });
+      } catch (e) {
+        root.innerHTML = '<p>Unable to load listing. <a href="rvs.html">Back to Lease-to-Own</a></p>';
+      }
+    }
+    loadDetail();
+  </script>
+</body>
+</html>

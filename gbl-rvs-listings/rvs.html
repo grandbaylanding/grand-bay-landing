@@ -189,16 +189,19 @@
             : 'Photo Coming Soon';
           const statusClass = (rv.status || 'available').toLowerCase();
           const statusLabel = statusClass === 'available' ? 'Available' : (rv.status || 'Available');
+          const detailUrl = 'detail.html?id=' + encodeURIComponent(rv.id || '');
           return `
             <article class="rv-card">
-              <div class="rv-card-image">${img}</div>
+              <a href="${detailUrl}" style="text-decoration:none;color:inherit;display:block;">
+                <div class="rv-card-image">${img}</div>
+              </a>
               <div class="rv-card-body">
                 <span class="rv-status ${statusClass}">${statusLabel}</span>
-                <h3>${rv.title || 'Lease-to-Own Camper'}</h3>
+                <h3><a href="${detailUrl}" style="color:inherit;text-decoration:none;">${rv.title || 'Lease-to-Own Camper'}</a></h3>
                 <div class="rv-price">${rv.monthly || 'Contact for pricing'}</div>
                 <p>${rv.description || ''}</p>
                 ${rv.features ? `<div class="rv-features">${rv.features}</div>` : ''}
-                <a href="${rv.inquire_link || 'contact.html'}" class="btn btn-primary">Inquire</a>
+                <a href="${detailUrl}" class="btn btn-primary">View details &amp; photos</a>
               </div>
             </article>
           `;
