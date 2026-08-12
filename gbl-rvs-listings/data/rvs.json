@@ -1,13 +1,13 @@
 [
   {
     "id": "rv-001",
-    "title": "Lease-to-Own Camper",
+    "title": "2006 Keystone Everest",
     "status": "available",
-    "monthly": "Contact for pricing",
-    "description": "Comfortable camper available for lease-to-own. Stays in the park. Details and photos coming soon.",
+    "monthly": "$900/mo ($650 lot + $250 toward camper)",
+    "description": "3-year lease-to-own term. Camper must remain on the lot for the full term. Move-in requires first month, last month, and $500 down.",
     "beds": "",
-    "features": "Lease-to-own · Stays on site · Peaceful setting",
-    "image": "",
+    "features": "Lease-to-own · 3-year term · Stays on site",
+    "image": "IMG_5568.jpeg",
     "inquire_link": "contact.html"
   }
 ]
