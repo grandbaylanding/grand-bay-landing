@@ -5,9 +5,19 @@
     "status": "available",
     "monthly": "$900/mo ($650 lot + $250 toward camper)",
     "description": "3-year lease-to-own term. Camper must remain on the lot for the full term. Move-in requires first month, last month, and $500 down.",
+    "details": "Lease-to-own program with $650 applied to lot rent and $250 applied toward ownership of the camper each month. The unit stays on the lot for the full 3-year term. Move-in requires first month, last month, and a $500 down payment.",
     "beds": "",
     "features": "Lease-to-own · 3-year term · Stays on site",
     "image": "IMG_5568.jpeg",
+    "images": [
+      "IMG_5568.jpeg",
+      "IMG_5569.jpeg",
+      "IMG_5574.jpeg",
+      "IMG_5575.jpeg",
+      "IMG_5576.jpeg",
+      "IMG_5577.jpeg",
+      "IMG_5578.jpeg"
+    ],
     "inquire_link": "contact.html"
   }
 ]
